@@ -8,4 +8,6 @@ ActionView::Template.class_eval do
   end
 end
 #fix for Rails 3.1 not setting virutal_path anymore (BOO!)
-ActionView::Resolver::Path.class_eval { alias_method :virtual, :to_s }
+if Rails::VERSION::MAJOR == 3 and Rails::VERSION::MINOR >= 1
+  ActionView::Resolver::Path.class_eval { alias_method :virtual, :to_s }
+end
